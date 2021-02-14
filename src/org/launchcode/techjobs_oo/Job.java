@@ -30,6 +30,9 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    public Job(String name, Employer acme, Location desert, PositionType quality_control, CoreCompetency persistence) {
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
