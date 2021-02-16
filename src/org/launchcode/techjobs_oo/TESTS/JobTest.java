@@ -14,11 +14,13 @@ public class JobTest {
         job2 = new Job();
     }
 
+    @org.junit.Test
     @Test
     public void testSettingJobId() {
         org.junit.Assert.assertEquals(1, job2.getId(), job1.getId());
     }
 
+    @org.junit.Test
     @Test
     public void testJobConstructorSetsAllFields() {
         Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
@@ -33,6 +35,7 @@ public class JobTest {
         org.junit.Assert.assertEquals("Persistence", job.getCoreCompetency().getValue());
     }
 
+    @org.junit.Test
     @Test
     public void testJobsForEquality() {
         Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
@@ -40,26 +43,37 @@ public class JobTest {
         org.junit.Assert.assertEquals(job1.getId(), job2.getId());
     }
 
+    @org.junit.Test
     @Test
     public void testToString() {
         Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-        Boolean expected = job.toString().startsWith("\n");
-        Boolean expected2 = job.toString().endsWith("\n");
-        Boolean compareThis = expected2 == expected;
-        org.junit.Assert.assertEquals(true, compareThis);
+        Boolean beginning = job.toString().startsWith("\n");
+        Boolean end = job.toString().endsWith("\n");
+        Boolean compare = end == beginning;
+        org.junit.Assert.assertEquals(true, compare);
     }
 
+    @org.junit.Test
     @Test
-    public void testStringContainsLabelsAndFields() {
+    public void testFields() {
         Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         String expected = "\nID: " + job.getId() + "\nName: " + job.getName() + "\nEmployer: " + job.getEmployer() + "\nLocation: " + job.getLocation() + "\nPosition Type: " + job.getPositionType() + "\nCore Competency: " + job.getCoreCompetency();
         org.junit.Assert.assertEquals(expected, job.toString());
     }
 
+    @org.junit.Test
     @Test
-    public void testIfFieldIsEmpty() {
+    public void testEmptyFields() {
         Job job = new Job("", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         String expected = "\nID: " + job.getId() + "\nName: " + "Data not available" + "\nEmployer: " + job.getEmployer() + "\nLocation: " + job.getLocation() + "\nPosition Type: " + job.getPositionType() + "\nCore Competency: " + job.getCoreCompetency() + "\n";
+        org.junit.Assert.assertEquals(expected, job.toString());
+    }
+
+    @org.junit.Test
+    @Test
+    public void testIDField() {
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String expected = "OOPS! This job does not seem to exist.";
         org.junit.Assert.assertEquals(expected, job.toString());
     }
 

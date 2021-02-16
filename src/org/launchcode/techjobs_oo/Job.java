@@ -74,4 +74,30 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) { this.coreCompetency = coreCompetency; }
 
     public int getId() { return id; }
+
+    public String toString() {
+        String noData= "Data Not Available";
+
+        if(name.isEmpty()) {
+            name = noData;
+        }
+
+        if(employer.getValue() == null || employer.getValue().equals("")) {
+            employer.setValue(noData);
+        }
+
+        if(location.getValue() == null || location.getValue().equals("")) {
+            location.setValue(noData);
+        }
+
+        if(positionType.getValue() == null || positionType.getValue().equals("")) {
+            positionType.setValue(noData);
+        }
+
+        if(coreCompetency.getValue() == null || coreCompetency.getValue().equals("")) {
+            coreCompetency.setValue(noData);
+        }
+
+        return "\nID: " + this.getId() + "\nName: " + this.getName() + "\nEmployer: " + this.getEmployer() + "\nLocation: " + this.getLocation() + "\nPosition Type: " + this.getPositionType() + "\nCore Competency: " + this.getCoreCompetency() + "\n";
+    }
 }
